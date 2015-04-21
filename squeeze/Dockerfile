@@ -1,7 +1,7 @@
 FROM debian:squeeze
 
 RUN rm -rf /var/lib/apt/lists/* && apt-get update
-RUN apt-get install --assume-yes   pbuilder mysql-client gdb screen sip-tester psmisc joe
+RUN apt-get install --assume-yes   pbuilder mysql-client gdb screen sip-tester sipsak psmisc joe
 
 VOLUME /code
 

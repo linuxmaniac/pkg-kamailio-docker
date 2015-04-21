@@ -33,6 +33,7 @@ docker run --name kamailio-mysql -e MYSQL_ROOT_PASSWORD=secretpw -d mysql:latest
 ```
 
 Now we can link mysql container to ours.
+The kamailio-mysql server is now available as mysql
 This asumes that Kamailio git sources are in $(pwd)
 
 ```
