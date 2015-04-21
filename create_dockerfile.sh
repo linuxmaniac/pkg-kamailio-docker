@@ -1,5 +1,6 @@
 create_dockerfile() {
   mkdir -p "${dist}"
+  cp -r "src/pkg/kamailio/deb/${dist}/" "${dist}/debian/"
   cat > "${dist}/Dockerfile" <<EOF
 FROM debian:${dist}
 
@@ -10,11 +11,10 @@ RUN apt-get install --assume-yes \
 VOLUME /code
 
 RUN mkdir -p /usr/local/src/pkg
-COPY src/pkg /usr/local/src/pkg
+COPY debian /usr/local/src/pkg/debian
 
 # get build dependences
-RUN cp -r /usr/local/src/pkg/kamailio/deb/${dist}/ /tmp/debian
-RUN cd /tmp && /usr/lib/pbuilder/pbuilder-satisfydepends-experimental
+RUN cd /usr/local/src/pkg/ && /usr/lib/pbuilder/pbuilder-satisfydepends-experimental
 
 # clean
 RUN rm -rf /var/lib/apt/lists/*
