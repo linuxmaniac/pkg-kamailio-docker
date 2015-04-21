@@ -21,14 +21,6 @@ RUN rm -rf /var/lib/apt/lists/*
 
 EXPOSE 5060
 
-# docker build --tag="kamailio-dev-${dist}" .
-# mysql container
-# docker run --name kamailio-mysql
-#  -e MYSQL_ROOT_PASSWORD=secretpw -d mysql:latest
-# linked with mysql container
-# docker run -i -t -p 127.0.0.1:5060:5060/udp
-#   -v $(pwd)/../kamailio_dev:/kamailio_dev -v $(pwd):/code:rw
-#   --link kamailio-mysql:mysql kamailio-dev-${dist}:latest bash
 EOF
 
 }
