@@ -11,7 +11,6 @@ git clone https://github.com/kamailio/kamailio.git
 
 Example with squeeze
 
-```
 ## pull docker images
 
 We are going to use another container for mysql server
