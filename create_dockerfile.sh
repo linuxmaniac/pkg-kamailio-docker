@@ -17,7 +17,7 @@ COPY debian /usr/local/src/pkg/debian
 RUN cd /usr/local/src/pkg/ && /usr/lib/pbuilder/pbuilder-satisfydepends-experimental
 
 # clean
-RUN rm -rf /var/lib/apt/lists/*
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 5060
 
