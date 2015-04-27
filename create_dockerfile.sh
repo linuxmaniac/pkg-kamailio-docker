@@ -6,7 +6,7 @@ FROM debian:${dist}
 
 RUN rm -rf /var/lib/apt/lists/* && apt-get update
 RUN apt-get install --assume-yes \
-  pbuilder mysql-client gdb screen sip-tester sipsak psmisc joe
+  pbuilder mysql-client gdb screen sip-tester sipsak psmisc joe lynx
 
 VOLUME /code
 
