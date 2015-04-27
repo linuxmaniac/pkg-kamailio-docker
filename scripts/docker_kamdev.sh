@@ -21,7 +21,10 @@ docker_run() {
 }
 
 mysql_start() {
-    docker_run "$1" -e MYSQL_ROOT_PASSWORD=secretpw -d mysql:latest
+  local name="${1:-kamailio-mysql}"
+  local base="mysql:${2:-latest}"
+  echo "INFO: using ${base} for ${name}"
+  docker_run "${name}" -e MYSQL_ROOT_PASSWORD=secretpw -d "${base}"
 }
 
 usage() {
@@ -29,6 +32,7 @@ usage() {
   --start-mysql                    start mysql container if missing
   --link-mysql                     links mysql container
   --mysql-name  <container-name>   set mysql container name
+  --mysql-tag   <image>            set mysql tag to be used
   --name        <container-name>   set kamailio container name
   --dist        <dist>             base debian distribution to be used
 
@@ -36,10 +40,12 @@ Defaults:
 DIST=${DIST}
 IMG_BASE=${IMG_BASE}
 KAM_BASE_NAME=${KAM_BASE_NAME}
+MYSQL_NAME=${MYSQL_NAME}
+MYSQL_TAG=${MYSQL_TAG}
 "
 }
 # command line handling
-CMDLINE_OPTS="start-mysql,link-mysql,mysql-name:,dist:,name:,help"
+CMDLINE_OPTS="start-mysql,link-mysql,mysql-name:,mysql-tag:,dist:,name:,help"
 
 _opt_temp=$(getopt --name docker_kamdev.sh -o h --long $CMDLINE_OPTS -- "$@")
 if [ $? -ne 0 ]; then
@@ -53,6 +59,7 @@ DOCKER="/usr/bin/docker"
 DIST="jessie"
 IMG_BASE="linuxmaniac/pkg-kamailio-docker"
 MYSQL_NAME="kamailio-mysql"
+MYSQL_TAG="latest"
 KAM_BASE_NAME="kam-dev"
 
 _opt_start_mysql=false
@@ -69,6 +76,9 @@ while :; do
     ;;
   --mysql-name)
     shift; _opt_link_mysql=true; MYSQL_NAME="$1"
+    ;;
+  --mysql-tag)
+    shift; _opt_link_mysql=true; MYSQL_TAG="$1"
     ;;
   --name)
     shift; KAM_NAME="$1"
@@ -122,7 +132,7 @@ if $_opt_link_mysql ; then
 fi
 
 if $_opt_start_mysql ; then
-  mysql_start "${MYSQL_NAME}"
+  mysql_start "${MYSQL_NAME}" "${MYSQL_TAG}"
 fi
 
 docker_run ${KAM_NAME} ${OPTS} ${img} /bin/bash
