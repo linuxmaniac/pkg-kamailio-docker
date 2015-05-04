@@ -50,3 +50,15 @@ docker run --name kamailio-dev-squeeze -i -t -p 127.0.0.1:5060:5060/udp \
  -v $(pwd):/code:rw -v $(pwd)/../kamailio_dev:/kamailio_dev \
  --link kamailio-mysql:mysql linxmaniac/pkg-kamailio-docker:squeeze bash
 ```
+
+there is a helper script at scripts/docker_kamdev.sh to make this easier:
+
+```
+./scripts/docker_kamdev.sh --help
+```
+
+Running jessie with a mysql container is just:
+
+```
+./scripts/docker_kamdev.sh --start-mysql --dist jessie
+```
