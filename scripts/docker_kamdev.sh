@@ -45,7 +45,7 @@ MYSQL_TAG=${MYSQL_TAG}
 "
 }
 # command line handling
-CMDLINE_OPTS="start-mysql,link-mysql,mysql-name:,mysql-tag:,dist:,name:,help"
+CMDLINE_OPTS="start-mysql,link-mysql,mysql-name:,mysql-tag:,dist:,name:,help,expose-ports"
 
 _opt_temp=$(getopt --name docker_kamdev.sh -o h --long $CMDLINE_OPTS -- "$@")
 if [ $? -ne 0 ]; then
@@ -64,7 +64,7 @@ KAM_BASE_NAME="kam-dev"
 
 _opt_start_mysql=false
 _opt_link_mysql=false
-_opt_expose_port=true
+_opt_expose_ports=false
 
 while :; do
   case "$1" in
@@ -85,6 +85,9 @@ while :; do
     ;;
   --dist)
     shift; DIST="$1"
+    ;;
+  --expose-ports)
+    _opt_expose_ports=true;
     ;;
   -h|--help)
     usage ; exit 0;
@@ -123,8 +126,8 @@ if [ -d "${KAM_CONF_DIR}" ] ; then
   OPTS+=" -v ${KAM_CONF_DIR}:/kamailio_dev"
 fi
 
-if $_opt_expose_port ; then
-  OPTS+=" -p 127.0.0.1:5060:5060/udp"
+if $_opt_expose_ports ; then
+  OPTS+=" -P "
 fi
 
 if $_opt_link_mysql ; then
