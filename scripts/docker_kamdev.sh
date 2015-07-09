@@ -119,7 +119,7 @@ esac
 
 [ -z "${KAM_NAME}" ] && KAM_NAME="${KAM_BASE_NAME}-${DIST}"
 
-OPTS="-i -t"
+OPTS="-i -t --rm"
 OPTS+=" -v ${KAM_DIR}:/code:rw"
 
 if [ -d "${KAM_CONF_DIR}" ] ; then
