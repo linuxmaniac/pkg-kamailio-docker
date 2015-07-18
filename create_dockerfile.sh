@@ -33,15 +33,6 @@ else
 	git clone https://github.com/kamailio/kamailio.git src
 fi
 
-case "$dist" in
-	sid|unstable)
-		if ! [ -d src/pkg/kamailio/deb/sid ] ; then
-			cp -r src/pkg/kamailio/deb/debian src/pkg/kamailio/deb/sid
-		fi
-		dist=sid
-		;;
-esac
-
 if ! [ -d "src/pkg/kamailio/deb/${dist}/" ] ; then
 	echo "ERROR: no ${dist} support"
 	exit 1
