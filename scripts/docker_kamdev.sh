@@ -108,7 +108,7 @@ done
 [ -z "${KAM_CONF_DIR}" ] && KAM_CONF_DIR="${BASE_GIT_DIR}/kamailio_dev"
 
 case "${DIST}" in
-  stretch|jessie|wheezy|squeeze)
+  sid|stretch|jessie|wheezy|squeeze)
     img="${IMG_BASE}:${DIST}"
     ;;
   *)
