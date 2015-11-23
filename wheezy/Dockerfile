@@ -1,7 +1,9 @@
 FROM debian:wheezy
 
+ENV REFRESHED_AT 2015-11-24
+
 RUN rm -rf /var/lib/apt/lists/* && apt-get update
-RUN apt-get install --assume-yes   pbuilder mysql-client gdb screen sip-tester sipsak psmisc joe lynx less
+RUN apt-get install --assume-yes   pbuilder mysql-client gdb screen sip-tester sipsak psmisc joe lynx less clang-3.4
 
 VOLUME /code
 
