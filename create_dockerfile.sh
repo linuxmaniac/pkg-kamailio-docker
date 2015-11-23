@@ -11,8 +11,8 @@ FROM debian:${dist}
 ENV REFRESHED_AT ${DATE}
 
 RUN rm -rf /var/lib/apt/lists/* && apt-get update
-RUN apt-get install --assume-yes \
-  pbuilder mysql-client gdb screen sip-tester sipsak psmisc joe lynx less clang-3.4
+RUN apt-get install --assume-yes ${CLANG}\
+  pbuilder mysql-client gdb screen sip-tester sipsak psmisc joe lynx less
 
 VOLUME /code
 
@@ -45,5 +45,11 @@ if ! [ -d "src/pkg/kamailio/deb/${dist}/" ] ; then
 	echo "ERROR: no ${dist} support"
 	exit 1
 fi
+
+case ${dist} in
+	squeeze|wheezy) CLANG="" ;;
+	*)	CLANG=" clang-3.4" ;;
+esac
+
 
 create_dockerfile
