@@ -7,7 +7,7 @@ FROM debian:stretch
 ENV REFRESHED_AT 2015-11-24
 
 RUN rm -rf /var/lib/apt/lists/* && apt-get update
-RUN apt-get install --assume-yes  clang-3.4  pbuilder mysql-client gdb screen sip-tester sipsak psmisc joe lynx less
+RUN apt-get install --assume-yes  clang-3.7  pbuilder mysql-client gdb screen sip-tester sipsak psmisc joe lynx less
 
 VOLUME /code
 
