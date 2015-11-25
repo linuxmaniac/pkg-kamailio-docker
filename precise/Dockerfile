@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM ubuntu:precise
 
 # Important! Update this no-op ENV variable when this Dockerfile
 # is updated with the current date. It will force refresh of all
@@ -7,7 +7,7 @@ FROM debian:jessie
 ENV REFRESHED_AT 2015-11-25
 
 RUN rm -rf /var/lib/apt/lists/* && apt-get update
-RUN apt-get install --assume-yes  clang-3.5  pbuilder mysql-client gdb screen sip-tester sipsak psmisc joe lynx less
+RUN apt-get install --assume-yes   pbuilder mysql-client gdb screen sip-tester sipsak psmisc joe lynx less
 
 VOLUME /code
 

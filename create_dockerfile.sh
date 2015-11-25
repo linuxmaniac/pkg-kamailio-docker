@@ -1,8 +1,10 @@
+#!/bin/bash
+
 create_dockerfile() {
   mkdir -p "${dist}"
   cp -r "src/pkg/kamailio/deb/${dist}/" "${dist}/debian/"
   cat > "${dist}/Dockerfile" <<EOF
-FROM debian:${dist}
+FROM ${base}:${dist}
 
 # Important! Update this no-op ENV variable when this Dockerfile
 # is updated with the current date. It will force refresh of all
@@ -53,5 +55,13 @@ case ${dist} in
 	sid)            CLANG=" clang-3.8" ;;
 esac
 
+case ${dist} in
+  trusty|precise) base=ubuntu ;;
+  squeeze|wheezy|jessie|stretch|sid) base=debian ;;
+  *)
+    echo "ERROR: no ${dist} base found"
+    exit 1
+    ;;
+esac
 
 create_dockerfile
