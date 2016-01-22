@@ -1,14 +1,15 @@
 #!/bin/bash
 
 create_dockerfile() {
+  rm -rf "${dist}"
   mkdir -p "${dist}"
   cp -r "src/pkg/kamailio/deb/${dist}/" "${dist}/debian/"
-  cat > "${dist}/Dockerfile" <<EOF
+  cat >"${dist}"/Dockerfile <<EOF
 FROM ${base}:${dist}
 
 # Important! Update this no-op ENV variable when this Dockerfile
 # is updated with the current date. It will force refresh of all
-# of the base images and things like `apt-get update` won't be using
+# of the base images and things like 'apt-get update' won't be using
 # old cached versions when the Dockerfile is built.
 ENV REFRESHED_AT ${DATE}
 
@@ -28,9 +29,7 @@ RUN cd /usr/local/src/pkg/ && /usr/lib/pbuilder/pbuilder-satisfydepends-experime
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 5060
-
 EOF
-
 }
 
 dist=${1:-sid}

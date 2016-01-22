@@ -2,9 +2,9 @@ FROM debian:stretch
 
 # Important! Update this no-op ENV variable when this Dockerfile
 # is updated with the current date. It will force refresh of all
-# of the base images and things like  won't be using
+# of the base images and things like 'apt-get update' won't be using
 # old cached versions when the Dockerfile is built.
-ENV REFRESHED_AT 2015-11-25
+ENV REFRESHED_AT 2016-01-22
 
 RUN rm -rf /var/lib/apt/lists/* && apt-get update
 RUN apt-get install --assume-yes  clang-3.7  pbuilder mysql-client gdb screen sip-tester sipsak psmisc joe lynx less
@@ -21,4 +21,3 @@ RUN cd /usr/local/src/pkg/ && /usr/lib/pbuilder/pbuilder-satisfydepends-experime
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 5060
-
