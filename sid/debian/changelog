@@ -1,3 +1,33 @@
+kamailio (5.0.0~dev0) unstable; urgency=medium
+
+  * version set to 5.0.0-dev0
+
+ -- Victor Seva <vseva@debian.org>  Fri, 11 Mar 2016 09:16:51 +0100
+
+kamailio (4.4.0~pre2) unstable; urgency=medium
+
+  * version set to 4.4.0-pre2
+
+ -- Victor Seva <vseva@debian.org>  Thu, 10 Mar 2016 12:38:56 +0100
+
+kamailio (4.4.0~pre1) unstable; urgency=medium
+
+  * version set to 4.4.0-pre1
+
+ -- Victor Seva <linuxmaniac@torreviejawireless.org>  Tue, 23 Feb 2016 08:53:36 +0100
+
+kamailio (4.4.0~pre0) unstable; urgency=medium
+
+  * version set to 4.4.0-pre0
+
+ -- Victor Seva <linuxmaniac@torreviejawireless.org>  Thu, 04 Feb 2016 11:51:56 +0100
+
+kamailio (4.4.0~dev9) unstable; urgency=medium
+
+  * update version to 4.4.0~dev9
+
+ -- Victor Seva <linuxmaniac@torreviejawireless.org>  Wed, 03 Feb 2016 18:29:09 +0100
+
 kamailio (4.4.0~dev8) unstable; urgency=medium
 
   * update version to 4.4.0~dev8
