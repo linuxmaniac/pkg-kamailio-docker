@@ -4,7 +4,7 @@ FROM debian:jessie
 # is updated with the current date. It will force refresh of all
 # of the base images and things like 'apt-get update' won't be using
 # old cached versions when the Dockerfile is built.
-ENV REFRESHED_AT 2016-05-10
+ENV REFRESHED_AT 2016-06-29
 
 RUN rm -rf /var/lib/apt/lists/* && apt-get update
 RUN apt-get install --assume-yes  clang-3.5  pbuilder mysql-client gdb screen sip-tester sipsak psmisc joe lynx less
