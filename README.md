@@ -48,7 +48,7 @@ I usually keep my tests config on another directory so I can use it like:
 ```
 docker run --name kamailio-dev-squeeze -i -t -p 127.0.0.1:5060:5060/udp \
  -v $(pwd):/code:rw -v $(pwd)/../kamailio_dev:/kamailio_dev \
- --link kamailio-mysql:mysql linxmaniac/pkg-kamailio-docker:squeeze bash
+ --link kamailio-mysql:mysql linuxmaniac/pkg-kamailio-docker:squeeze bash
 ```
 
 there is a helper script at scripts/docker_kamdev.sh to make this easier:
