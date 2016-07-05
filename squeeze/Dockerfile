@@ -6,8 +6,10 @@ FROM debian:squeeze
 # old cached versions when the Dockerfile is built.
 ENV REFRESHED_AT 2016-07-05
 
+RUN echo "deb http://archive.debian.org/debian squeeze main" > /etc/apt/sources.list;     echo "deb http://archive.debian.org/debian squeeze-lts main" >> /etc/apt/sources.list ;     echo "Acquire::Check-Valid-Until false;" >> /etc/apt/apt.conf
+
 RUN rm -rf /var/lib/apt/lists/* && apt-get update
-RUN apt-get install --assume-yes   pbuilder mysql-client gdb screen sip-tester sipsak psmisc joe lynx less
+RUN apt-get install --assume-yes  pbuilder mysql-client gdb screen sip-tester psmisc joe lynx less sipsak
 
 VOLUME /code
 

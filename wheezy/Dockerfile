@@ -7,7 +7,7 @@ FROM debian:wheezy
 ENV REFRESHED_AT 2016-07-05
 
 RUN rm -rf /var/lib/apt/lists/* && apt-get update
-RUN apt-get install --assume-yes   pbuilder mysql-client gdb screen sip-tester sipsak psmisc joe lynx less
+RUN apt-get install --assume-yes  pbuilder mysql-client gdb screen sip-tester psmisc joe lynx less sipsak
 
 VOLUME /code
 

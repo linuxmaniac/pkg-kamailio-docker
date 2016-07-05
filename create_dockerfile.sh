@@ -13,9 +13,20 @@ FROM ${base}:${dist}
 # old cached versions when the Dockerfile is built.
 ENV REFRESHED_AT ${DATE}
 
+EOF
+
+if [ -n "${archived}" ] ; then
+cat >>"${dist}"/Dockerfile <<EOF
+RUN echo "deb http://archive.debian.org/debian ${dist} main" > /etc/apt/sources.list; \
+    echo "deb http://archive.debian.org/debian ${dist}-lts main" >> /etc/apt/sources.list ; \
+    echo "Acquire::Check-Valid-Until false;" >> /etc/apt/apt.conf
+
+EOF
+fi
+
+cat >>"${dist}"/Dockerfile <<EOF
 RUN rm -rf /var/lib/apt/lists/* && apt-get update
-RUN apt-get install --assume-yes ${CLANG}\
-  pbuilder mysql-client gdb screen sip-tester sipsak psmisc joe lynx less
+RUN apt-get install --assume-yes ${CLANG} pbuilder ${TOOLS}
 
 VOLUME /code
 
@@ -47,9 +58,11 @@ if ! [ -d "src/pkg/kamailio/deb/${dist}/" ] ; then
 	exit 1
 fi
 
+TOOLS="mysql-client gdb screen sip-tester psmisc joe lynx less"
+
 case ${dist} in
-	squeeze|wheezy) CLANG="" ;;
-	jessie)	        CLANG=" clang-3.5" ;;
+	squeeze|wheezy) CLANG="" TOOLS="$TOOLS sipsak" ;;
+	jessie)	        CLANG=" clang-3.5" TOOLS="$TOOLS sipsak"  ;;
 	stretch)        CLANG=" clang-3.7" ;;
 	sid)            CLANG=" clang-3.8" ;;
 esac
@@ -61,6 +74,10 @@ case ${dist} in
     echo "ERROR: no ${dist} base found"
     exit 1
     ;;
+esac
+
+case ${dist} in
+  squeeze) archived=true ;;
 esac
 
 create_dockerfile
