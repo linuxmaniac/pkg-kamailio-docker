@@ -4,7 +4,7 @@ FROM debian:sid
 # is updated with the current date. It will force refresh of all
 # of the base images and things like 'apt-get update' won't be using
 # old cached versions when the Dockerfile is built.
-ENV REFRESHED_AT 2016-07-05
+ENV REFRESHED_AT 2016-07-06
 
 RUN rm -rf /var/lib/apt/lists/* && apt-get update
 RUN apt-get install --assume-yes  clang-3.8 pbuilder mysql-client gdb screen sip-tester psmisc joe lynx less
