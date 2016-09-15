@@ -6,6 +6,9 @@ FROM debian:jessie
 # old cached versions when the Dockerfile is built.
 ENV REFRESHED_AT 2016-09-15
 
+# avoid httpredir errors
+RUN sed -i 's/httpredir/ftp.us/g' /etc/apt/sources.list
+
 RUN rm -rf /var/lib/apt/lists/* && apt-get update
 RUN apt-get install --assume-yes  clang-3.5 pbuilder mysql-client gdb screen sip-tester psmisc joe lynx less sipsak
 

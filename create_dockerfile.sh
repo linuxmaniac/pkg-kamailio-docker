@@ -22,6 +22,12 @@ RUN echo "deb http://archive.debian.org/debian ${dist} main" > /etc/apt/sources.
     echo "Acquire::Check-Valid-Until false;" >> /etc/apt/apt.conf
 
 EOF
+elif [ "${base}" = "debian" ] ; then
+cat >>"${dist}"/Dockerfile <<EOF
+# avoid httpredir errors
+RUN sed -i 's/httpredir/ftp.us/g' /etc/apt/sources.list
+
+EOF
 fi
 
 cat >>"${dist}"/Dockerfile <<EOF
