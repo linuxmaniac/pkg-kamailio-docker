@@ -7,7 +7,7 @@ FROM ubuntu:trusty
 ENV REFRESHED_AT 2016-09-15
 
 RUN rm -rf /var/lib/apt/lists/* && apt-get update
-RUN apt-get install --assume-yes  pbuilder mysql-client gdb screen sip-tester psmisc joe lynx less
+RUN apt-get install --assume-yes  pbuilder mysql-client gdb screen sip-tester psmisc joe vim lynx less
 
 VOLUME /code
 

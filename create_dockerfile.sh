@@ -64,7 +64,7 @@ if ! [ -d "src/pkg/kamailio/deb/${dist}/" ] ; then
 	exit 1
 fi
 
-TOOLS="mysql-client gdb screen sip-tester psmisc joe lynx less"
+TOOLS="mysql-client gdb screen sip-tester psmisc joe vim lynx less"
 
 case ${dist} in
 	squeeze|wheezy) CLANG="" TOOLS="$TOOLS sipsak" ;;

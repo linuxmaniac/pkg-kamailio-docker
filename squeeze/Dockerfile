@@ -9,7 +9,7 @@ ENV REFRESHED_AT 2016-09-15
 RUN echo "deb http://archive.debian.org/debian squeeze main" > /etc/apt/sources.list;     echo "deb http://archive.debian.org/debian squeeze-lts main" >> /etc/apt/sources.list ;     echo "Acquire::Check-Valid-Until false;" >> /etc/apt/apt.conf
 
 RUN rm -rf /var/lib/apt/lists/* && apt-get update
-RUN apt-get install --assume-yes  pbuilder mysql-client gdb screen sip-tester psmisc joe lynx less sipsak
+RUN apt-get install --assume-yes  pbuilder mysql-client gdb screen sip-tester psmisc joe vim lynx less sipsak
 
 VOLUME /code
 
