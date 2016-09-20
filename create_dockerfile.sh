@@ -69,8 +69,8 @@ TOOLS="mysql-client gdb screen sip-tester psmisc joe vim lynx less"
 case ${dist} in
 	squeeze|wheezy) CLANG="" TOOLS="$TOOLS sipsak" ;;
 	jessie)	        CLANG=" clang-3.5" TOOLS="$TOOLS sipsak"  ;;
-	stretch)        CLANG=" clang-3.7" ;;
-	sid)            CLANG=" clang-3.8" ;;
+	stretch)        CLANG=" clang-3.8" ;;
+	sid)            CLANG=" clang-3.9" ;;
 esac
 
 case ${dist} in
