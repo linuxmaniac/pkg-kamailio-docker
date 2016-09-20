@@ -4,7 +4,7 @@ FROM ubuntu:precise
 # is updated with the current date. It will force refresh of all
 # of the base images and things like 'apt-get update' won't be using
 # old cached versions when the Dockerfile is built.
-ENV REFRESHED_AT 2016-09-15
+ENV REFRESHED_AT 2016-09-20
 
 RUN rm -rf /var/lib/apt/lists/* && apt-get update
 RUN apt-get install --assume-yes  pbuilder mysql-client gdb screen sip-tester psmisc joe vim lynx less

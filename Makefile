@@ -1,4 +1,4 @@
-DISTS:=sid stretch jessie wheezy squeeze precise trusty
+DISTS:=sid stretch jessie wheezy squeeze precise trusty xenial
 
 all:
 	for i in $(DISTS) ; do \
